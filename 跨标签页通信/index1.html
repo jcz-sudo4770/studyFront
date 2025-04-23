@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>页面1</p>
+    <button id="sendMessage">发送消息</button>
+    <!-- localStroage方式 -->
+    <!-- <script>
+        const sendButton = document.getElementById('sendMessage');
+        sendButton.addEventListener('click', () => {
+            const message = '这是一条跨标签页的消息';
+            localStorage.setItem('message', message); // 将消息存储到本地存储中
+        });
+    </script> -->
+    <!-- broadcastChannel方式 -->
+     <script>
+        const channel = new BroadcastChannel('myChannel')
+        const sendButton = document.getElementById('sendMessage');
+        sendButton.addEventListener('click', () => {
+            const message = '这是一条跨标签页的消息';
+            channel.postMessage(message); // 将消息通过broadcasrChannel发送出去
+        });
+     </script>
+</body>
+</html>

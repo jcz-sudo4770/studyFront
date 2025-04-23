@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>页面2</p>
+    <!-- localStroage方式 -->
+    <!-- <script>
+        window.addEventListener('storage', (event) => {
+            console.log("接收到消息",event)
+            if (event.key === 'message') {
+                const message = event.newValue; // 从本地存储中获取消息
+                console.log('接收到消息:', message);
+            }
+        });
+    </script> -->
+    <script>
+        const channel = new BroadcastChannel('myChannel')//创建的广播频道名称要一致
+        channel.addEventListener("message",(event)=>{
+            console.log("接收到的消息",event)
+        })
+    </script>
+</body>
+</html>

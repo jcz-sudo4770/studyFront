@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>按钮1</button>
+    <script>
+        const button = document.querySelector('button')
+        const worker = new SharedWorker('worker.js',{name:"myShareWorker"})
+        console.log(worker)
+        button.addEventListener('click',()=>{
+            worker.port.postMessage('按钮1被点击了')
+        })
+        worker.port.onmessage = (event)=>{
+            console.log("接收到的消息",event)
+        }
+    </script>
+</body>
+</html>
