@@ -15,7 +15,8 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "commit": "git cz"
+    "commit": "git cz",
+     "release": "standard-version"
   },
   "config": {
     "commitizen": {
