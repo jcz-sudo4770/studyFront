@@ -16,7 +16,8 @@
   "main": "index.js",
   "scripts": {
     "commit": "git cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepare": "commitlint -e -V"
   },
   "config": {
     "commitizen": {
