@@ -17,7 +17,7 @@
   "scripts": {
     "commit": "git cz",
     "release": "standard-version",
-    "prepare": "commitlint -e -V"
+    "prepare": "husky install"
   },
   "config": {
     "commitizen": {
