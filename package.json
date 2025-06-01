@@ -1,6 +1,6 @@
 {
   "name": "front-note",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "homepage": "https://github.com/jcz-sudo4770/mianshi#readme",
   "bugs": {
@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "commit": "git cz",
-     "release": "standard-version"
+    "release": "standard-version"
   },
   "config": {
     "commitizen": {
@@ -34,6 +34,7 @@
     "commitlint-config-cz": "^0.13.3",
     "cz-customizable": "^7.4.0",
     "husky": "^9.1.7",
+    "standard-version": "^9.5.0",
     "yorkie": "^2.0.0"
   }
 }
