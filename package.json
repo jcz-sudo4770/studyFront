@@ -15,15 +15,24 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-     "commit": "git cz"
+    "commit": "git cz"
   },
   "config": {
     "commitizen": {
       "path": "cz-customizable"
     }
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e -V"
+    }
+  },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
     "commitizen": "^4.3.1",
-    "cz-customizable": "^7.4.0"
+    "commitlint-config-cz": "^0.13.3",
+    "cz-customizable": "^7.4.0",
+    "husky": "^9.1.7",
+    "yorkie": "^2.0.0"
   }
 }
