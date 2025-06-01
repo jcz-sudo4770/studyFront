@@ -6,7 +6,7 @@ on:
       - '*'  # 当有新标签被推送到仓库时触发工作流
 permissions:
   contents: write # 授予写入仓库内容的权限
-  
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -14,14 +14,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4  # 检出代码到工作区
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'  # 选择合适的 Node.js 版本
-          cache: 'npm'  # 缓存 npm 依赖
+          cache: 'pnpm'  # 缓存 pnpm 依赖
 
       - name: Install dependencies
-        run: npm install  # 安装项目依赖
+        run: pnpm install  # 使用 pnpm 安装项目依赖
 
       - name: Run release script
-        run: npm run release  # 执行版本发布脚本
+        run: pnpm run release  # 使用 pnpm 执行版本发布脚本
