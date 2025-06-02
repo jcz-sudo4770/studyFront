@@ -66,6 +66,10 @@ jobs:
           echo "NEXT_VERSION=$next_version" >> $GITHUB_ENV
           echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
 
+      - name: Print next version
+        run: |
+          echo "计算得到的下一个版本号是: ${{ env.NEXT_VERSION }}"
+
       - name: Run release script with calculated version
         run: |
           pnpm run release -- --release-as ${{ env.NEXT_VERSION }}
