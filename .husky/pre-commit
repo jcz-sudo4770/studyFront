@@ -1,0 +1,7 @@
+npm test
+echo "开始执行 lint-staged..."
+npx lint-staged
+if [ $? -ne 0 ]; then
+  echo "lint-staged 执行失败，请检查错误信息。"
+  exit 1
+fi

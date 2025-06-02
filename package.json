@@ -19,7 +19,7 @@
     "lint": "eslint .",
     "commit": "git cz",
     "release": "standard-version",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "config": {
     "commitizen": {
@@ -31,6 +31,12 @@
       "commit-msg": "commitlint -e -V"
     }
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "commitizen": "^4.3.1",
@@ -40,6 +46,7 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.1",
     "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
     "prettier": "^3.5.3",
     "standard-version": "^9.5.0",
     "yorkie": "^2.0.0"
