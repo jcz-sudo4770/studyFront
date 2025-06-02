@@ -2,6 +2,8 @@ name: Release
 
 on:
   push:
+  branches:
+      - main  # 可根据实际情况修改分支名
     # tags:
     #   - '*'  # 当有新标签被推送到仓库时触发工作流
 permissions:
@@ -44,17 +46,29 @@ jobs:
       - name: Install dependencies
         run: pnpm install  # 使用 pnpm 安装项目依赖
 
-      - name: Set release arguments
-        id: set-args
+      - name: Get latest tag and calculate next version
+        id: version-calculator
         run: |
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            echo "RELEASE_ARGS=--no-tag" >> $GITHUB_ENV
+          latest_tag=$(git tag --sort=-v:refname | head -n 1)
+          if [ -z "$latest_tag" ]; then
+            next_version="0.0.1"
           else
-            echo "RELEASE_ARGS=" >> $GITHUB_ENV
+            # 去除标签前缀（如果有的话，如 v）
+            version=${latest_tag#v}
+            # 分割版本号
+            major=$(echo $version | cut -d. -f1)
+            minor=$(echo $version | cut -d. -f2)
+            patch=$(echo $version | cut -d. -f3)
+            # 自动递增 patch 版本
+            patch=$((patch + 1))
+            next_version="$major.$minor.$patch"
           fi
+          echo "NEXT_VERSION=$next_version" >> $GITHUB_ENV
+          echo "::set-output name=next_version::$next_version"
 
-      - name: Run release script
-        run: pnpm run release  # 使用 pnpm 执行版本发布脚本
+      - name: Run release script with calculated version
+        run: |
+          pnpm run release -- --release-as ${{ env.NEXT_VERSION }}
 
       - name: Push changes and tags
         run: |
