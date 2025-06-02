@@ -81,18 +81,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-           # 切换到 main 分支，可根据实际情况修改分支名
-            git checkout main
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add CHANGELOG.md package.json
-            # 检查是否有更改需要提交
-            if [ -n "$(git status --porcelain)" ]; then
-              git commit -m "chore: 更新CHANGELOG"
-              git push origin main
-            else
-              echo "没有更改需要提交"
-            fi
+          # 记录当前最新提交的哈希值
+          latest_commit=$(git rev-parse HEAD)
+          # 切换到 main 分支
+          git checkout main
+          # 尝试合并之前记录的提交
+          git merge $latest_commit --no-ff -m "Merge detached HEAD commit"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add CHANGELOG.md package.json
+          # 检查是否有更改需要提交
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "chore: 更新CHANGELOG"
+          fi
+          git push origin main
       # - name: Push changes and tags
       #   run: |
       #     git add .  # 暂存所有更改
