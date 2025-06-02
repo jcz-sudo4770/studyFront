@@ -69,10 +69,11 @@ jobs:
       - name: Print next version
         run: |
           echo "计算得到的下一个版本号是: ${{ env.NEXT_VERSION }}"
+          echo "当前环境变量 NEXT_VERSION 的值为: $NEXT_VERSION"
 
       - name: Run release script with calculated version
         run: |
-          pnpm run release -- --release-as ${{ env.NEXT_VERSION }}
+          pnpm run release --release-as ${{ env.NEXT_VERSION }}
 
       - name: Push changes and tags
         run: |
