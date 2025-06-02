@@ -64,8 +64,6 @@ jobs:
             # 引用最新的tag标签
             next_version="$major.$minor.$patch"
           fi
-          echo "NEXT_VERSION=$next_version" >> $GITHUB_ENV
-          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
 
       - name: Print next version
         run: |
@@ -74,42 +72,14 @@ jobs:
 
       - name: Run release script with calculated version
         run: |
-          echo "当前工作目录: $(pwd)"
-          echo "当前 GITHUB_REF: $GITHUB_REF"
-          echo "当前 GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
           # pnpm run release --release-as ${{ env.NEXT_VERSION }}
-          chmod +w CHANGELOG.md
-          echo "运行脚本前 CHANGELOG.md 权限: $(ls -l CHANGELOG.md)"
-          echo "运行脚本前 package.json 权限: $(ls -l package.json)"
-          pnpm run release --release-as ${{ env.NEXT_VERSION }} --skip.tag
-          echo "修改后的 CHANGELOG.md 内容："
-          echo "运行脚本后 CHANGELOG.md 权限: $(ls -l CHANGELOG.md)"
-          echo "运行脚本后 package.json 权限: $(ls -l package.json)"
-          # 检查 CHANGELOG.md 文件是否存在且有修改
-          if [ -f "CHANGELOG.md" ]; then
-            echo "CHANGELOG.md 文件存在"
-            git status --porcelain CHANGELOG.md
-          else
-            echo "CHANGELOG.md 文件不存在"
-          fi
+          git tag -d ${{ env.NEXT_VERSION }}
+          pnpm run release --release-as ${{ env.NEXT_VERSION }}
           
       - name: Commit and push Changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 创建临时分支保存分离头指针状态下的所有提交
-          git checkout -b temp_branch
-          # 切换回 main 分支
-          git checkout main
-          # 合并临时分支到 main 分支
-          git merge temp_branch --no-ff -m "Merge all detached HEAD commits"
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add CHANGELOG.md package.json
-          if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "chore: 更新CHANGELOG"
-          fi
-          git push origin main
-          # 可以选择删除临时分支
-          git branch -d temp_branch
+          git push --follow-tags origin main
 # ... 已有代码 ...
