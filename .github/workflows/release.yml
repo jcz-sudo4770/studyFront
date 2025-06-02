@@ -79,10 +79,13 @@ jobs:
           echo "当前 GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
           # pnpm run release --release-as ${{ env.NEXT_VERSION }}
           chmod +w CHANGELOG.md
+          git clean -fdx
+          echo "运行脚本前 CHANGELOG.md 权限: $(ls -l CHANGELOG.md)"
+          echo "运行脚本前 package.json 权限: $(ls -l package.json)"
           pnpm run release --release-as ${{ env.NEXT_VERSION }} --skip.tag
           echo "修改后的 CHANGELOG.md 内容："
-          cat CHANGELOG.md
-          cat package.json
+          echo "运行脚本后 CHANGELOG.md 权限: $(ls -l CHANGELOG.md)"
+          echo "运行脚本后 package.json 权限: $(ls -l package.json)"
           # 检查 CHANGELOG.md 文件是否存在且有修改
           if [ -f "CHANGELOG.md" ]; then
             echo "CHANGELOG.md 文件存在"
