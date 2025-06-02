@@ -76,8 +76,14 @@ jobs:
         run: |
           # pnpm run release --release-as ${{ env.NEXT_VERSION }}
           pnpm run release --release-as ${{ env.NEXT_VERSION }} --skip.tag
-
-      # ... 已有代码 ...
+          # 检查 CHANGELOG.md 文件是否存在且有修改
+          if [ -f "CHANGELOG.md" ]; then
+            echo "CHANGELOG.md 文件存在"
+            git status --porcelain CHANGELOG.md
+          else
+            echo "CHANGELOG.md 文件不存在"
+          fi
+          
       - name: Commit and push Changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
