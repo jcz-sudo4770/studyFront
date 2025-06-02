@@ -74,7 +74,10 @@ jobs:
 
       - name: Run release script with calculated version
         run: |
+          echo "当前 GITHUB_REF: $GITHUB_REF"
+          echo "当前 GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
           # pnpm run release --release-as ${{ env.NEXT_VERSION }}
+          chmod +w CHANGELOG.md
           pnpm run release --release-as ${{ env.NEXT_VERSION }} --skip.tag
           # 检查 CHANGELOG.md 文件是否存在且有修改
           if [ -f "CHANGELOG.md" ]; then
