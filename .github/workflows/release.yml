@@ -82,6 +82,7 @@ jobs:
           pnpm run release --release-as ${{ env.NEXT_VERSION }} --skip.tag
           echo "修改后的 CHANGELOG.md 内容："
           cat CHANGELOG.md
+          cat package.json
           # 检查 CHANGELOG.md 文件是否存在且有修改
           if [ -f "CHANGELOG.md" ]; then
             echo "CHANGELOG.md 文件存在"
