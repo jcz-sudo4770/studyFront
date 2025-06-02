@@ -40,7 +40,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'  # 选择合适的 Node.js 版本
+          node-version: '22.13.0'  # 选择合适的 Node.js 版本
           cache: 'pnpm'  # 缓存 pnpm 依赖
 
       - name: Install dependencies
