@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.23](https://github.com/jcz-sudo4770/mianshi/compare/v0.0.22...v0.0.23) (2025-06-02)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **组件:** release.yml修改 ([72e5f5c](https://github.com/jcz-sudo4770/mianshi/commit/72e5f5cd09eef7021d9644130be97920e2d0697e))
+* release.yml提交变更 ([ecb8bdd](https://github.com/jcz-sudo4770/mianshi/commit/ecb8bdd469efcb714bc5641e01052b92fd8124ad))
+
 ### [0.0.9](https://github.com/jcz-sudo4770/mianshi/compare/v0.0.8...v0.0.9) (2025-06-02)
 
 
