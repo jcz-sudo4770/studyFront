@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.34](https://github.com/jcz-sudo4770/mianshi/compare/v0.0.33...v0.0.34) (2025-06-02)
+
+
+### 👷 Continuous Integration | CI 配置
+
+* **release:** 回退，改成主分支合并触发日志生成 ([ce6ff48](https://github.com/jcz-sudo4770/mianshi/commit/ce6ff48dd6b6926774d03bd4b1e184c5526cb735))
+
 ### [0.0.23](https://github.com/jcz-sudo4770/mianshi/compare/v0.0.22...v0.0.23) (2025-06-02)
 
 
