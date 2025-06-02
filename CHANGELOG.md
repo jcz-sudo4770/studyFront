@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/jcz-sudo4770/mianshi/compare/v0.0.8...v0.0.9) (2025-06-02)
+
+
+### ✨ Features | 新功能
+
+* **组件:** release.yml文件修改 ([b7e22c2](https://github.com/jcz-sudo4770/mianshi/commit/b7e22c24465880cfd3eed48456372f4599b93457))
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **组件:** release.yml文件修改 ([3b41347](https://github.com/jcz-sudo4770/mianshi/commit/3b41347c050fa925d77802dead3797cd8dcfb45d))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **其它变更:** 修改工作流逻辑 ([6be4484](https://github.com/jcz-sudo4770/mianshi/commit/6be448430623b58633e0a244c469a66c5a15ee3f))
+* **组件:** release.yml修改 ([2f8aaa2](https://github.com/jcz-sudo4770/mianshi/commit/2f8aaa274307d893bcdfe72637c6bf1625e53ae8))
+* **组件:** release.yml文件on格式 ([dd39962](https://github.com/jcz-sudo4770/mianshi/commit/dd39962c792a8dd53f3e28c84b934832422255d7))
+* **组件:** 修改废弃命令--set-output ([1d0d290](https://github.com/jcz-sudo4770/mianshi/commit/1d0d290402c30a2805ae20aab1032eb749ab6baa))
+* **组件:** 添加next-version字段输出 ([51d5d79](https://github.com/jcz-sudo4770/mianshi/commit/51d5d79c6f5129a637f9f1c6596aecf835eb3484))
+
 ### [0.0.6](https://github.com/jcz-sudo4770/mianshi/compare/v0.0.8...v0.0.6) (2025-06-02)
 
 
