@@ -20,21 +20,23 @@
 // }
 // console.log(longestSonSequence([1,0,1,2]))
 
-function longStr(strArr){
-    const set = new Set(strArr)
-    let maxLength = 0
-    console.log(set)
-    Array.from(set).filter(item).forEach(item=>{
-        console.log(item)
-        let currentItem = item
-        let currentLength = 1
-        while(set.has(currentItem + 1)){
-            currentLength++
-            currentItem++
-        }
-        maxLength = Math.max(maxLength,currentLength)
+function longStr(strArr) {
+  const set = new Set(strArr)
+  let maxLength = 0
+  console.log(set)
+  Array.from(set)
+    .filter(item)
+    .forEach((item) => {
+      console.log(item)
+      let currentItem = item
+      let currentLength = 1
+      while (set.has(currentItem + 1)) {
+        currentLength++
+        currentItem++
+      }
+      maxLength = Math.max(maxLength, currentLength)
     })
-    return maxLength
+  return maxLength
 }
-console.log(longStr([100,4,200,1,3,2]))
+console.log(longStr([100, 4, 200, 1, 3, 2]))
 // console.log(new Set([1,2,3,4,5,6,7]))

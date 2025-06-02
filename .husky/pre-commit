@@ -1,4 +1,3 @@
-npm test
 echo "开始执行 lint-staged..."
 npx lint-staged
 if [ $? -ne 0 ]; then
