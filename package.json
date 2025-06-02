@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "commit": "git cz",
-    "release": "standard-version",
+    "release": "standard-version --no-tag",
     "prepare": "husky install"
   },
   "config": {
