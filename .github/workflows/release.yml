@@ -79,7 +79,6 @@ jobs:
           echo "当前 GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
           # pnpm run release --release-as ${{ env.NEXT_VERSION }}
           chmod +w CHANGELOG.md
-          git clean -fdx
           echo "运行脚本前 CHANGELOG.md 权限: $(ls -l CHANGELOG.md)"
           echo "运行脚本前 package.json 权限: $(ls -l package.json)"
           pnpm run release --release-as ${{ env.NEXT_VERSION }} --skip.tag
