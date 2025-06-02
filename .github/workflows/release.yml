@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4  # 检出代码到工作区
+        with:
+          fetch-depth: 0  # 检出所有历史记录和标签
 
       - name: Verify Git repository
         run: |
@@ -42,5 +44,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install  # 使用 pnpm 安装项目依赖
 
+      - name: Set release arguments
+        id: set-args
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            echo "RELEASE_ARGS=--no-tag" >> $GITHUB_ENV
+          else
+            echo "RELEASE_ARGS=" >> $GITHUB_ENV
+          fi
+
       - name: Run release script
         run: pnpm run release  # 使用 pnpm 执行版本发布脚本
+
+      - name: Push changes and tags
+        run: |
+          git push --follow-tags origin main  # 推送代码和新标签到远程仓库
