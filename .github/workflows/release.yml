@@ -96,5 +96,5 @@ jobs:
           fi
           git push origin main
           # 可以选择删除临时分支
-          # git branch -d temp_branch
+          git branch -d temp_branch
 # ... 已有代码 ...
