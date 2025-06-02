@@ -77,6 +77,15 @@ jobs:
           # pnpm run release --release-as ${{ env.NEXT_VERSION }}
           pnpm run release --release-as ${{ env.NEXT_VERSION }} --skip.tag
 
+      - name: Commit and push Changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add CHANGELOG.md package.json
+          git commit -m "chore: 更新CHANGELOG"
+          git push origin master
       # - name: Push changes and tags
       #   run: |
       #     git add .  # 暂存所有更改
