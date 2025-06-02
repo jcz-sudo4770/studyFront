@@ -15,6 +15,8 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint .",
     "commit": "git cz",
     "release": "standard-version",
     "prepare": "husky install"
@@ -34,7 +36,11 @@
     "commitizen": "^4.3.1",
     "commitlint-config-cz": "^0.13.3",
     "cz-customizable": "^7.4.0",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
     "husky": "^9.1.7",
+    "prettier": "^3.5.3",
     "standard-version": "^9.5.0",
     "yorkie": "^2.0.0"
   }
