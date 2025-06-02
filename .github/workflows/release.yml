@@ -2,10 +2,10 @@ name: Release
 
 on:
   push:
-    branches:
-      - main  # 可根据实际情况修改分支名
-    # tags:
-    #   - '*'  # 当有新标签被推送到仓库时触发工作流
+    # branches:
+    #   - main  # 可根据实际情况修改分支名
+    tags:
+      - '*'  # 当有新标签被推送到仓库时触发工作流
 permissions:
   contents: write # 授予写入仓库内容的权限
 
@@ -59,8 +59,9 @@ jobs:
             major=$(echo $version | cut -d. -f1)
             minor=$(echo $version | cut -d. -f2)
             patch=$(echo $version | cut -d. -f3)
-            # 自动递增 patch 版本
-            patch=$((patch + 1))
+            #  自动递增 patch 版本
+            # patch=$((patch + 1))
+            # 引用最新的tag标签
             next_version="$major.$minor.$patch"
           fi
           echo "NEXT_VERSION=$next_version" >> $GITHUB_ENV
