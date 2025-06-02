@@ -2,10 +2,10 @@ name: Release
 
 on:
   push:
-    # branches:
-    #   - main  # 可根据实际情况修改分支名
-    tags:
-      - '*'  # 当有新标签被推送到仓库时触发工作流
+    branches:
+      - main  # 可根据实际情况修改分支名
+    # tags:
+    #   - '*'  # 当有新标签被推送到仓库时触发工作流
 permissions:
   contents: write # 授予写入仓库内容的权限
 
@@ -40,7 +40,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.13.0'  # 选择合适的 Node.js 版本
+          node-version: '18'  # 选择合适的 Node.js 版本
           cache: 'pnpm'  # 缓存 pnpm 依赖
 
       - name: Install dependencies
@@ -59,11 +59,12 @@ jobs:
             major=$(echo $version | cut -d. -f1)
             minor=$(echo $version | cut -d. -f2)
             patch=$(echo $version | cut -d. -f3)
-            #  自动递增 patch 版本
-            # patch=$((patch + 1))
-            # 引用最新的tag标签
+            # 自动递增 patch 版本
+            patch=$((patch + 1))
             next_version="$major.$minor.$patch"
           fi
+          echo "NEXT_VERSION=$next_version" >> $GITHUB_ENV
+          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
 
       - name: Print next version
         run: |
@@ -72,14 +73,8 @@ jobs:
 
       - name: Run release script with calculated version
         run: |
-          # pnpm run release --release-as ${{ env.NEXT_VERSION }}
-          git tag -d ${{ env.NEXT_VERSION }}
           pnpm run release --release-as ${{ env.NEXT_VERSION }}
-          
-      - name: Commit and push Changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push changes and tags
         run: |
-          # 创建临时分支保存分离头指针状态下的所有提交
-          git push --follow-tags origin main
-# ... 已有代码 ...
+          git push --follow-tags origin main  # 推送代码和新标签到远程仓库
