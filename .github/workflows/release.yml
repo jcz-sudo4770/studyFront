@@ -64,7 +64,7 @@ jobs:
             next_version="$major.$minor.$patch"
           fi
           echo "NEXT_VERSION=$next_version" >> $GITHUB_ENV
-          echo "::set-output name=next_version::$next_version"
+          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
 
       - name: Run release script with calculated version
         run: |
