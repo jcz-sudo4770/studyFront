@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-  branches:
+    branches:
       - main  # 可根据实际情况修改分支名
     # tags:
     #   - '*'  # 当有新标签被推送到仓库时触发工作流
